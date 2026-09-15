@@ -2,12 +2,29 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 
 function Home() {
+    const [search, setSearch]= useState("");
     const [problems, setProblems] = useState([]);
     const [selectedRating, setSelectedRating]= useState("All");
     const ratings= [
         "All",
-        800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500
+        ...new Set(
+            problems
+                .map((problem) => problem.rating)
+                .filter((rating) => rating)
+                .sort((a, b) => a-b)
+        )
     ];
+
+    const tags= [
+        "All",
+        ...new Set(
+            problems
+                .flatMap((problem) => problem.tags)
+                .sort()
+        )
+    ];
+
+    const [selectedTag, setSelectedTag] = useState("All");
 
     useEffect(() => {
         const fetchProblems= async () => {
@@ -21,21 +38,54 @@ function Home() {
         fetchProblems();
     }, []);
 
-    const filteredProblems= selectedRating === "All"
-        ? problems
-        : problems.filter((problem) => problem.rating === selectedRating);
+    const filteredProblems= problems.filter((problem) => {
+        const ratingMatch= 
+            selectedRating === "All" || problem.rating === selectedRating;
+
+        const tagMatch=
+            selectedTag === "All" || problem.tags.includes(selectedTag);
+
+        const searchMatch= 
+            problem.name.toLowerCase().includes(search.toLowerCase());
+
+        return ratingMatch && tagMatch && searchMatch;
+    });
 
     return (
         <div>
             <h1>Codeforces Tracker</h1>
             <p>Problem solved: {problems.length}</p>
+            <input 
+                type= "text"
+                placeholder= "Search problem..."
+                value= {search}
+                onChange= {(e) => setSearch(e.target.value)}
+            />
             <div>
                 {ratings.map((rating) => (
                     <button
                         key= {rating}
                         onClick= {() => setSelectedRating(rating)}
+                        style= {{
+                            backgroundColor: selectedRating === rating ? "black" : "white",
+                            color: selectedRating === rating ? "white" : "black"
+                        }}
                     >
                         {rating}
+                    </button>
+                ))}
+            </div>
+            <div>
+                {tags.map((tag) => (
+                    <button
+                        key= {tag}
+                        onClick= {() => setSelectedTag(tag)}
+                        style= {{
+                            backgroundColor: selectedTag === tag ? "black" : "white",
+                            color: selectedTag === tag ? "white" : "black"
+                        }}
+                    >
+                        {tag}
                     </button>
                 ))}
             </div>
