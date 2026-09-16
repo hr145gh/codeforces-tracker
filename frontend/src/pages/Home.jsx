@@ -52,55 +52,119 @@ function Home() {
     });
 
     return (
-        <div>
-            <h1>Codeforces Tracker</h1>
-            <p>Problem solved: {problems.length}</p>
+        <div
+            style={{
+                minHeight: "100vh",
+                backgroundColor: "#0f1117",
+                color:"white",
+                padding: "40px"
+            }}
+        >
+            <h1
+                style={{
+                    fontSize:"40px",
+                    marginBottom:"10px"
+                }}
+            >Codeforces Tracker</h1>
+            <p
+                style={{
+                    color:"#9ca3af",
+                    fontSize:"18px"
+                }}
+            >Problem solved: {problems.length}</p>
             <input 
                 type= "text"
                 placeholder= "Search problem..."
                 value= {search}
                 onChange= {(e) => setSearch(e.target.value)}
+                style={{
+                    width:"100%",
+                    maxWidth:"500px",
+                    padding:"12px",
+                    marginTop:"20px",
+                    marginBottom:"25px",
+                    borderRadius:"8px",
+                    border:"1px solid #374151",
+                    backgroundColor:"#1f2937",
+                    color:"white",
+                    fontSize:"16px"
+                }}
             />
+            <h2>Rating</h2>
             <div>
                 {ratings.map((rating) => (
                     <button
                         key= {rating}
                         onClick= {() => setSelectedRating(rating)}
                         style= {{
-                            backgroundColor: selectedRating === rating ? "black" : "white",
-                            color: selectedRating === rating ? "white" : "black"
+                            padding:"8px 14px",
+                            margin:"5px",
+                            borderRadius:"20px",
+                            border:"1px solid #374151",
+                            cursor:"pointer",
+                            backgroundColor:
+                                selectedRating === rating ? "#2563eb" : "#1f2937",
+                            color:"white",
+                            fontWeight:
+                                selectedRating === rating ? "bold" : "normal"
                         }}
                     >
                         {rating}
                     </button>
                 ))}
             </div>
+            <h2>Tags</h2>
             <div>
                 {tags.map((tag) => (
                     <button
                         key= {tag}
                         onClick= {() => setSelectedTag(tag)}
                         style= {{
-                            backgroundColor: selectedTag === tag ? "black" : "white",
-                            color: selectedTag === tag ? "white" : "black"
+                            padding:"8px 14px",
+                            margin:"5px",
+                            borderRadius:"20px",
+                            border:"1px solid #374151",
+                            cursor:"pointer",
+                            backgroundColor:
+                                selectedTag === tag ? "#2563eb" : "#1f2937",
+                            color:"white",
+                            fontWeight:
+                                selectedTag === tag ? "bold" : "normal"
                         }}
                     >
                         {tag}
                     </button>
                 ))}
             </div>
-
+            <h2>Problems</h2>
             {filteredProblems.map((problem) => (
-                <div key= {problem._id}>
-                    <h3>
-                        <a href={problem.problemURL} target= "_blank">
+                <div 
+                    key= {problem._id}
+                    style={{
+                        backgroundColor:"#1f2937",
+                        padding:"20px",
+                        marginTop:"15px",
+                        borderRadius:"12px",
+                        border:"1px solid #374151"
+                    }}
+                >
+                    <h3 style={{ margin: "0 0 10px 0" }}>
+                        <a 
+                            href={problem.problemURL}
+                            target= "_blank"
+                            rel="noreferrer"
+                            style={{
+                                color:"#60a5fa",
+                                textDecoration: "none"
+                            }}
+                        >
                             {problem.contestId}{problem.index}- {problem.name}
                         </a>
                         
                     </h3>
 
-                    <p>Rating: {problem.rating}</p>
-                    <p>Tags: {problem.tags.join(", ")}</p>
+                    <p style={{color: "#d1d5db"}}>Rating: {problem.rating}</p>
+                    <p style={{color: "#9ca3af"}}>Tags: {problem.tags.join(", ")}</p>
                 </div>
             ))}
         </div>
