@@ -6,6 +6,8 @@ function Home() {
     const [problems, setProblems] = useState([]);
     const [selectedRating, setSelectedRating]= useState("All");
     const [hoveredProblem, setHoveredProblem]= useState(null);
+    const [syncMessage, setSyncMessage]= useState("");
+    const [syncing, setSyncing] = useState(false);
     const ratings= [
         "All",
         ...new Set(
@@ -38,6 +40,24 @@ function Home() {
         };
         fetchProblems();
     }, []);
+
+    const syncProblems = async () => {
+        try{
+            setSyncing(true);
+            setSyncMessage("");
+
+            const response= await api.post("/codeforces/sync/hr145cp");
+            console.log(response.data);
+            setSyncMessage(`Synced! Added ${response.data.added} new problems.`);
+            const problemsResponse= await api.get("/problems");
+            setProblems(problemsResponse.data);
+        } catch(error){
+            console.log(error);
+            setSyncMessage("Sync failed!");
+        } finally{
+            setSyncing(false);
+        }
+    };
 
     const filteredProblems= problems.filter((problem) => {
         const ratingMatch= 
@@ -106,14 +126,84 @@ function Home() {
                     >
                         @hr145cp
                     </div>
+                    <button
+                        onClick={syncProblems}
+                        style={{
+                            padding:"10px 16px",
+                            borderRadius:"8px",
+                            border:"none",
+                            backgroundColor:"#2563eb",
+                            color:"white",
+                            cursor:"pointer",
+                            fontWeight:"bold",
+                            opacity:syncing? 0.7 : 1
+                        }}
+                    >
+                        {syncing ? "Syncing..." : "Sync Codeforces"}
+                    </button>
+                    {syncMessage && (
+                        <p style={{color: "#60a5fa", margin:"8px 0 0 0", fontSize:"14px"}}>
+                            {syncMessage}
+                        </p>
+                    )}
                 </div>
                 
-                <p
+                <div
                     style={{
-                        color:"#9ca3af",
-                        fontSize:"18px"
+                        display:"flex",
+                        flexWrap:"wrap",
+                        gap:"15px",
+                        marginBottom:"25px"
                     }}
-                >Problem solved: {problems.length} | Showing: {filteredProblems.length}</p>
+                >
+                    <div
+                        style={{
+                            backgroundColor:"#1f2937",
+                            padding:"15px 20px",
+                            borderRadius:"10px",
+                            border:"1px solid #374151"
+                        }}
+                    >
+                        <p style={{color:"#9ca3af", margin:"0"}}>
+                            Total Solved
+                        </p>
+
+                        <h2 style={{margin:"5px 0 0 0"}}>
+                            {problems.length}
+                        </h2>
+                    </div>
+                    <div
+                        style={{
+                            backgroundColor:"#1f2937",
+                            padding:"15px 20px",
+                            borderRadius:"10px",
+                            border:"1px solid #374151"
+                        }}
+                    >
+                        <p style={{color:"#9ca3af", margin:"0"}}>
+                            Ratings
+                        </p>
+                        <h2 style={{margin:"5px 0 0 0"}}>
+                            {ratings.length-1}
+                        </h2>
+                    </div>
+                    <div
+                        style={{
+                            backgroundColor:"#1f2937",
+                            padding:"15px 20px",
+                            borderRadius:"10px",
+                            border:"1px solid #374151"
+                        }}
+                    >
+                        <p style={{color:"#9ca3af", margin:"0"}}>
+                            Tags
+                        </p>
+                        <h2 style={{margin:"5px 0 0 0"}}>
+                            {tags.length-1}
+                        </h2>
+                    </div>
+                </div>
+
                 <input 
                     type= "text"
                     placeholder= "Search problem..."
@@ -214,7 +304,27 @@ function Home() {
                         ))}
                     </div>
                 </div>
-                <h2>Problems</h2>
+                <div
+                    style={{
+                        display:"flex",
+                        justifyContent:"space-between",
+                        alignItems:"center",
+                        marginTop:"30px",
+                        marginBottom:"10px"
+                    }}
+                >
+                    <h2 style={{margin:"0"}}>
+                        Problems
+                    </h2>
+                    <p
+                        style={{
+                            color:"#9ca3af",
+                            margin:"0"
+                        }}
+                    >
+                        Showing {filteredProblems.length} of {problems.length}
+                    </p>
+                </div>
                 {filteredProblems.length === 0 && (
                     <p style={{color: "#9ca3af", marginTop: "30px"}}>
                         No problems found.
@@ -227,9 +337,9 @@ function Home() {
                         onMouseLeave={() => setHoveredProblem(null)}
                         style={{
                             backgroundColor:"#1f2937",
-                            padding:"20px",
-                            marginTop:"15px",
-                            borderRadius:"12px",
+                            padding:"15px 18px",
+                            marginTop:"10px",
+                            borderRadius:"10px",
                             border:
                                 hoveredProblem === problem._id
                                     ? "1px solid #60a5fa"
@@ -241,7 +351,7 @@ function Home() {
                             transition: "transform 0.2s, border-color 0.2s"
                         }}
                     >
-                        <h3 style={{ margin: "0 0 10px 0" }}>
+                        <h3 style={{ margin: "0 0 10px 0" , fontSize:"18px"}}>
                             <a 
                                 href={problem.problemUrl}
                                 target= "_blank"
@@ -253,7 +363,7 @@ function Home() {
                                         textDecoration: "none"
                                 }}
                             >
-                                {problem.contestId}{problem.index}- {problem.name}
+                                {problem.contestId}{problem.index} - {problem.name}
                             </a>
                             
                         </h3>
@@ -261,19 +371,36 @@ function Home() {
                         <p
                             style={{
                                 color: "#ffbf24",
-                                fontWeight: "bold"
-
+                                fontWeight: "bold",
+                                margin:"8px 0"
                             }}
                         >
                             Rating: {problem.rating}
                         </p>
-                        <p
+                        <div
                             style={{
-                                color: "#9ca3af"
+                                display:"flex",
+                                flexWrap:"wrap",
+                                gap:"6px",
+                                marginTop:"10px"
                             }}
                         >
-                            Tags: {problem.tags.join(", ")}
-                        </p>
+                            {problem.tags.map((tag) => (
+                                <span
+                                    key={tag}
+                                    style={{
+                                        padding:"4px 9px",
+                                        borderRadius:"12px",
+                                        backgroundColor:"#111827",
+                                        color:"#9ca3af",
+                                        fontSize:"13px",
+                                        border:"1px solid #374151"
+                                    }}
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>
