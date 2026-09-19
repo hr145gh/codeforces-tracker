@@ -8,6 +8,7 @@ function Home() {
     const [hoveredProblem, setHoveredProblem]= useState(null);
     const [syncMessage, setSyncMessage]= useState("");
     const [syncing, setSyncing] = useState(false);
+    const [lastSynced, setLastSynced]= useState(null);
     const ratings= [
         "All",
         ...new Set(
@@ -48,7 +49,16 @@ function Home() {
 
             const response= await api.post("/codeforces/sync/hr145cp");
             console.log(response.data);
-            setSyncMessage(`Synced! Added ${response.data.added} new problems.`);
+            
+            if(response.data.added === 0){
+                setSyncMessage("Already up to date!");
+            }else if(response.data.added === 1){
+                setSyncMessage("Synced! Added 1 problems");
+            }else{
+                setSyncMessage("Synced! Added ${response.data.added} new problems");
+            }
+            setLastSynced(new Date());
+
             const problemsResponse= await api.get("/problems");
             setProblems(problemsResponse.data);
         } catch(error){
@@ -128,13 +138,14 @@ function Home() {
                     </div>
                     <button
                         onClick={syncProblems}
+                        disabled= {syncing}
                         style={{
                             padding:"10px 16px",
                             borderRadius:"8px",
                             border:"none",
                             backgroundColor:"#2563eb",
                             color:"white",
-                            cursor:"pointer",
+                            cursor:syncing? "not-allowed" : "pointer",
                             fontWeight:"bold",
                             opacity:syncing? 0.7 : 1
                         }}
@@ -144,6 +155,20 @@ function Home() {
                     {syncMessage && (
                         <p style={{color: "#60a5fa", margin:"8px 0 0 0", fontSize:"14px"}}>
                             {syncMessage}
+                        </p>
+                    )}
+                    {lastSynced && (
+                        <p
+                            style={{
+                                color:"#9ca3af",
+                                margin:"5px 0 0 0",
+                                fontSize:"12px"
+                            }}
+                        >
+                            Last synced: {lastSynced.toLocaleTimeString([], {
+                                hour:"2-digit",
+                                minute:"2-digit"
+                            })}
                         </p>
                     )}
                 </div>
