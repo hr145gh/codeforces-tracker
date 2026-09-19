@@ -53,9 +53,9 @@ function Home() {
             if(response.data.added === 0){
                 setSyncMessage("Already up to date!");
             }else if(response.data.added === 1){
-                setSyncMessage("Synced! Added 1 problems");
+                setSyncMessage("Synced! Added 1 problem");
             }else{
-                setSyncMessage("Synced! Added ${response.data.added} new problems");
+                setSyncMessage(`Synced! Added ${response.data.added} new problems`);
             }
             setLastSynced(new Date());
 
@@ -81,6 +81,11 @@ function Home() {
 
         return ratingMatch && tagMatch && searchMatch;
     });
+
+    const recentProblems = [...problems]
+        .filter((problem) => problem.solvedAt)
+        .sort((a, b) => new Date(b.solvedAt)- new Date(a.solvedAt))
+        .slice(0, 5)
 
     return (
         <div
@@ -251,6 +256,62 @@ function Home() {
                 <div
                     style={{
                         marginTop:"25px",
+                        marginBottom: "30px"
+                    }}
+                >
+                    <h2 style={{marginBottom:"15px"}}>
+                        Latest Solved
+                    </h2>
+
+                    {recentProblems.map((problem) => (
+                        <div
+                            key= {problem._id}
+                            onMouseEnter= {() => setHoveredProblem(problem._id)}
+                            onMouseLeave= {() => setHoveredProblem(null)}
+                            style={{
+                                backgroundColor:"#1f2937",
+                                padding:"10px 15px",
+                                marginTop:"8px",
+                                borderRadius:"8px",
+                                border:
+                                    hoveredProblem === problem._id
+                                        ? "1px solid #60a5fa"
+                                        : "1px solid #374151",
+                                transform: 
+                                    hoveredProblem === problem._id
+                                    ? "translateY(-3px)"
+                                    : "translateY(0)",
+                                transition: "transform 0.2s, border-color 0.2s"
+                            }}
+                        >
+                            <a
+                                href={problem.problemUrl}
+                                target= "_blank"
+                                rel= "noreferrer"
+                                style={{
+                                    color:"#60a5fa",
+                                    textDecoration:"none"
+                                }}
+                            >
+                                {problem.contestId}{problem.index}- {problem.name}
+                            </a>
+
+                            <span
+                                style={{
+                                    color:"#9ca3af",
+                                    marginLeft:"10px",
+                                    fontSize:"13px"
+                                }}
+                            >
+                                {new Date(problem.solvedAt).toLocaleDateString()}
+                            </span>
+                        </div>
+                    ))}
+
+                </div>
+                <div
+                    style={{
+                        marginTop:"25px",
                         marginBottom: "20px"
                     }}
                 >
@@ -401,6 +462,14 @@ function Home() {
                             }}
                         >
                             Rating: {problem.rating}
+                        </p>
+                        <p
+                            style={{
+                                color:"#9ca3af",
+                                margin:"8px 0"
+                            }}
+                        >
+                            Solved: {new Date(problem.solvedAt).toLocaleDateString()}
                         </p>
                         <div
                             style={{
