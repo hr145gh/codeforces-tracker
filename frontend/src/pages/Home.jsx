@@ -88,72 +88,29 @@ function Home() {
         .slice(0, 5)
 
     return (
-        <div
-            style={{
-                minHeight:"100vh",
-                backgroundColor:"#0f1117",
-                color:"white",
-                padding:"40px"
-            }}
-        >
-            <div
-                style={{
-                    width: "100%",
-                    maxWidth:"1400px",
-                    margin:"0 auto"
-                }}
-            >
-                <div 
-                    style={{
-                        display:"flex",
-                        justifyContent:"space-between",
-                        alignItems:"center",
-                        marginBottom:"30px"
-                    }}
-                >
+        <div className= "min-h-screen bg-[#0f1117] text-white p-10">
+            <div className= "w-full max-w-[1400px] mx-auto">
+                <div className= "flex justify-between items-center mb-[30px]">
                     <div>
-                        <h1
-                            style={{
-                                fontSize:"40px",
-                                margin:"0"
-                            }}
-                        >
+                        <h1 className= "text-[40px] m-0">
                             Codeforces Tracker
                         </h1>
 
-                        <p
-                            style={{
-                                color:"#9ca3af",
-                                marginTop:"8px"
-                            }}
-                        >
+                        <p className= "text-[#9ca3af] mt-2">
                             Tracking my Codeforces journey!
                         </p>
                     </div>
-                    <div
-                        style={{
-                            padding:"10px 16px",
-                            borderRadius:"20px",
-                            backgroundColor:"#1f2937",
-                            border:"1px solid #374151",
-                            color:"#60a5fa"
-                        }}
-                    >
+                    <div className= "px-4 py-2 rounded-[20px] bg-[#1f2937] border border-[#374151] text-[#60a5fa]">
                         @hr145cp
                     </div>
                     <button
                         onClick={syncProblems}
                         disabled= {syncing}
-                        style={{
-                            padding:"10px 16px",
-                            borderRadius:"8px",
-                            border:"none",
-                            backgroundColor:"#2563eb",
-                            color:"white",
-                            cursor:syncing? "not-allowed" : "pointer",
-                            fontWeight:"bold",
-                            opacity:syncing? 0.7 : 1
-                        }}
+                        className={`px-4 py-2 rounded-lg border-none bg-[#2563eb] text-white font-bold ${
+                            syncing
+                                ? "cursor-not-allowed opacity-70"
+                                : "cursor-pointer opacity-100"
+                        }`}
                     >
                         {syncing ? "Syncing..." : "Sync Codeforces"}
                     </button>
