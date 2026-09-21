@@ -115,18 +115,12 @@ function Home() {
                         {syncing ? "Syncing..." : "Sync Codeforces"}
                     </button>
                     {syncMessage && (
-                        <p style={{color: "#60a5fa", margin:"8px 0 0 0", fontSize:"14px"}}>
+                        <p className= "text-[#60a5fa] my-2 text-sm">
                             {syncMessage}
                         </p>
                     )}
                     {lastSynced && (
-                        <p
-                            style={{
-                                color:"#9ca3af",
-                                margin:"5px 0 0 0",
-                                fontSize:"12px"
-                            }}
-                        >
+                        <p className= "text-[#9ca3af] mt-[5px] text-xs">
                             Last synced: {lastSynced.toLocaleTimeString([], {
                                 hour:"2-digit",
                                 minute:"2-digit"
@@ -135,57 +129,29 @@ function Home() {
                     )}
                 </div>
                 
-                <div
-                    style={{
-                        display:"flex",
-                        flexWrap:"wrap",
-                        gap:"15px",
-                        marginBottom:"25px"
-                    }}
-                >
-                    <div
-                        style={{
-                            backgroundColor:"#1f2937",
-                            padding:"15px 20px",
-                            borderRadius:"10px",
-                            border:"1px solid #374151"
-                        }}
-                    >
-                        <p style={{color:"#9ca3af", margin:"0"}}>
+                <div className= "flex flex-wrap gap-[15px] mb-[25px]">
+                    <div className= "bg-[#1f2937] px-5 py-[15px] rounded-[10px] border border-[#374151]">
+                        <p className= "text-[#9ca3af] m-0">
                             Total Solved
                         </p>
 
-                        <h2 style={{margin:"5px 0 0 0"}}>
+                        <h2 className="mt-[5px] mb-0">
                             {problems.length}
                         </h2>
                     </div>
-                    <div
-                        style={{
-                            backgroundColor:"#1f2937",
-                            padding:"15px 20px",
-                            borderRadius:"10px",
-                            border:"1px solid #374151"
-                        }}
-                    >
-                        <p style={{color:"#9ca3af", margin:"0"}}>
+                    <div className="bg-[#1f2937] px-5 py-[15px] rounded-[10px] border border-[#374151]">
+                        <p className="text-[#9ca3af] m-0">
                             Ratings
                         </p>
-                        <h2 style={{margin:"5px 0 0 0"}}>
+                        <h2 className="mt-[5px] mb-0">
                             {ratings.length-1}
                         </h2>
                     </div>
-                    <div
-                        style={{
-                            backgroundColor:"#1f2937",
-                            padding:"15px 20px",
-                            borderRadius:"10px",
-                            border:"1px solid #374151"
-                        }}
-                    >
-                        <p style={{color:"#9ca3af", margin:"0"}}>
+                    <div className= "bg-[#1f2937] px-5 py-[15px] rounded-[10px] border border-[#374151]">
+                        <p className="text-[#9ca3af] m-0">
                             Tags
                         </p>
-                        <h2 style={{margin:"5px 0 0 0"}}>
+                        <h2 className="mt-[5px] mb-0">
                             {tags.length-1}
                         </h2>
                     </div>
@@ -196,27 +162,10 @@ function Home() {
                     placeholder= "Search problem..."
                     value= {search}
                     onChange= {(e) => setSearch(e.target.value)}
-                    style={{
-                        width:"100%",
-                        maxWidth:"700px",
-                        boxSizing:"border-box",
-                        padding:"12px",
-                        marginTop:"20px",
-                        marginBottom:"25px",
-                        borderRadius:"8px",
-                        border:"1px solid #374151",
-                        backgroundColor:"#1f2937",
-                        color:"white",
-                        fontSize:"16px"
-                    }}
+                    className="w-full max-w-[700px] box-border p-3 mt-5 mb-[25px] rounded-lg border border-[#374151] bg-[#1f2937] text-white text-base"
                 />
-                <div
-                    style={{
-                        marginTop:"25px",
-                        marginBottom: "30px"
-                    }}
-                >
-                    <h2 style={{marginBottom:"15px"}}>
+                <div className="mt-[25px] mb-[30px]">
+                    <h2 className="mb-[15px]">
                         Latest Solved
                     </h2>
 
@@ -225,41 +174,22 @@ function Home() {
                             key= {problem._id}
                             onMouseEnter= {() => setHoveredProblem(problem._id)}
                             onMouseLeave= {() => setHoveredProblem(null)}
-                            style={{
-                                backgroundColor:"#1f2937",
-                                padding:"10px 15px",
-                                marginTop:"8px",
-                                borderRadius:"8px",
-                                border:
-                                    hoveredProblem === problem._id
-                                        ? "1px solid #60a5fa"
-                                        : "1px solid #374151",
-                                transform: 
-                                    hoveredProblem === problem._id
-                                    ? "translateY(-3px)"
-                                    : "translateY(0)",
-                                transition: "transform 0.2s, border-color 0.2s"
-                            }}
+                            className={`bg-[#1f2937] p-[10px_15px] mt-2 rounded-lg border ${
+                                hoveredProblem === problem._id
+                                    ? "border-[#60a5fa] -translate-y-[3px]"
+                                    : "border-[#374151] translate-y-0"
+                            } transition-transform duration-200`}
                         >
                             <a
                                 href={problem.problemUrl}
                                 target= "_blank"
                                 rel= "noreferrer"
-                                style={{
-                                    color:"#60a5fa",
-                                    textDecoration:"none"
-                                }}
+                                className= "text-[#60a5fa] no-underline"
                             >
                                 {problem.contestId}{problem.index}- {problem.name}
                             </a>
 
-                            <span
-                                style={{
-                                    color:"#9ca3af",
-                                    marginLeft:"10px",
-                                    fontSize:"13px"
-                                }}
-                            >
+                            <span className= "text-[#9ca3af] ml-2.5 text-[13px]">
                                 {new Date(problem.solvedAt).toLocaleDateString()}
                             </span>
                         </div>
