@@ -196,110 +196,56 @@ function Home() {
                     ))}
 
                 </div>
-                <div
-                    style={{
-                        marginTop:"25px",
-                        marginBottom: "20px"
-                    }}
-                >
-                    <h2 
-                        style={{
-                            marginBottom: "10px"
-                        }}
-                    >
+                <div className="mt-[25px] mb-5">
+                    <h2 className="mb-2.5">
                         Rating
                     </h2>
-                    <div
-                        style={{
-                            display:"flex",
-                            flexWrap:"wrap"
-                        }}
-                    >
+                    <div className="flex flex-wrap">
                         {ratings.map((rating) => (
                             <button
                                 key= {rating}
                                 onClick= {() => setSelectedRating(rating)}
-                                style= {{
-                                    padding:"8px 14px",
-                                    margin:"5px",
-                                    borderRadius:"20px",
-                                    border:"1px solid #374151",
-                                    cursor:"pointer",
-                                    backgroundColor:
-                                        selectedRating === rating ? "#2563eb" : "#1f2937",
-                                    color:"white",
-                                    fontWeight:
-                                        selectedRating === rating ? "bold" : "normal"
-                                }}
+                                className= {`px-3.5 py-2 m-[5px] rounded-[20px] border border-[#374151] cursor-pointer text-white transition-all duration-200 hover:border-[#60a5fa] hover:-translate-y-[2px] ${
+                                    selectedRating === rating
+                                        ? "bg-[#2563eb] font-bold"
+                                        : "bg-[#1f2937] font-normal hover:bg-[#263a5a]"
+                                }`}
                             >
                                 {rating}
                             </button>
                         ))}
                     </div>
                 </div>
-                <div
-                    style={{
-                        marginBottom: "30px"
-                    }}
-                >
-                    <h2
-                        style={{
-                            marginBottom:"10px"
-                        }}
-                    >
+                <div className="mb-[30px]">
+                    <h2 className="mb-2.5">
                         Tags
                     </h2>
-                    <div
-                        style={{
-                            display:"flex",
-                            flexWrap:"wrap"
-                        }}
-                    >
+                    <div className="flex flex-wrap">
                         {tags.map((tag) => (
                             <button
                                 key= {tag}
                                 onClick= {() => setSelectedTag(tag)}
-                                style= {{
-                                    padding:"8px 14px",
-                                    margin:"5px",
-                                    borderRadius:"20px",
-                                    border:"1px solid #374151",
-                                    cursor:"pointer",
-                                    backgroundColor:
-                                        selectedTag === tag ? "#2563eb" : "#1f2937",
-                                    color:"white",
-                                    fontWeight:
-                                        selectedTag === tag ? "bold" : "normal"
-                                }}
+                                className= {`px-3.5 py-2 m-[5px] rounded-[20px] border border-[#374151] cursor-pointer text-white transition-all duration-200 hover:border-[#60a5fa] hover:-translate-y-[2px] ${
+                                    selectedTag === tag
+                                        ? "bg-[#2563eb] font-bold"
+                                        : "bg-[#1f2937] font-normal hover:bg-[#263a5a]"
+                                }`}
                             >
                                 {tag}
                             </button>
                         ))}
                     </div>
                 </div>
-                <div
-                    style={{
-                        display:"flex",
-                        justifyContent:"space-between",
-                        alignItems:"center",
-                        marginTop:"30px",
-                        marginBottom:"10px"
-                    }}
-                >
-                    <h2 style={{margin:"0"}}>
+                <div className="flex justify-between items-center mt-[30px] mb-2.5">
+                    <h2 className="m-0">
                         Problems
                     </h2>
-                    <p
-                        style={{
-                            color:"#9ca3af",
-                            margin:"0"
-                        }}
-                    >
+                    <p className= "text-[#9ca3af] m-0">
                         Showing {filteredProblems.length} of {problems.length}
                     </p>
                 </div>
                 {filteredProblems.length === 0 && (
-                    <p style={{color: "#9ca3af", marginTop: "30px"}}>
+                    <p className="text-[#9ca3af] mt-[30px]">
                         No problems found.
                     </p>
                 )}
@@ -308,54 +254,32 @@ function Home() {
                         key= {problem._id}
                         onMouseEnter={() => setHoveredProblem(problem._id)}
                         onMouseLeave={() => setHoveredProblem(null)}
-                        style={{
-                            backgroundColor:"#1f2937",
-                            padding:"15px 18px",
-                            marginTop:"10px",
-                            borderRadius:"10px",
-                            border:
-                                hoveredProblem === problem._id
-                                    ? "1px solid #60a5fa"
-                                    : "1px solid #374151",
-                            transform:
-                                hoveredProblem === problem._id
-                                    ? "translateY(-3px)"
-                                    : "translateY(0)",
-                            transition: "transform 0.2s, border-color 0.2s"
-                        }}
+                        className={`bg-[#1f2937] p-[15px_18px] mt-2.5 rounded-[10px] border ${
+                            hoveredProblem === problem._id
+                                ? "border-[#60a5fa] -translate-y-[3px]"
+                                : "border-[#374151] translate-y-0"
+                        } transition-transform duration-200`}
                     >
-                        <h3 style={{ margin: "0 0 10px 0" , fontSize:"18px"}}>
+                        <h3 className="m-0 mb-2.5 text-[18px]">
                             <a 
                                 href={problem.problemUrl}
                                 target= "_blank"
                                 rel="noreferrer"
-                                style={{
-                                    color: hoveredProblem === problem._id
-                                            ? "#93c5fd"
-                                            : "#60a5fa",
-                                        textDecoration: "none"
-                                }}
+                                className={`no-underline ${
+                                    hoveredProblem === problem._id
+                                        ? "text-[#93c5fd]"
+                                        : "text-[#60a5fa]"
+                                }`}
                             >
                                 {problem.contestId}{problem.index} - {problem.name}
                             </a>
                             
                         </h3>
 
-                        <p
-                            style={{
-                                color: "#ffbf24",
-                                fontWeight: "bold",
-                                margin:"8px 0"
-                            }}
-                        >
+                        <p className="text-[#9ca3af] my-[5px]">
                             Rating: {problem.rating}
                         </p>
-                        <p
-                            style={{
-                                color:"#9ca3af",
-                                margin:"8px 0"
-                            }}
-                        >
+                        <p className="text-[#9ca3af] my-[5px]">
                             Solved: {new Date(problem.solvedAt).toLocaleDateString()}
                         </p>
                         <div
