@@ -151,7 +151,7 @@ function Home() {
                         <p className="text-[#9ca3af] m-0">
                             Tags
                         </p>
-                        <h2 className="mt-[5px] mb-0 text-[#76C442]">
+                        <h2 className="mt-[5px] mb-0 text-[#C94B4B]">
                             {tags.length-1}
                         </h2>
                     </div>
@@ -165,7 +165,7 @@ function Home() {
                     className="w-full max-w-[700px] box-border p-3 mt-5 mb-[25px] rounded-lg border border-[#242830] bg-[#11141A] text-white text-base outline-none transition-all duration-200 focus:border-[#C94B4B] focus:shadow-[0_0_15px_#3865F680]"
                 />
                 <div className="mt-[25px] mb-[30px]">
-                    <h2 className="mb-[15px] text-[#E5F0FF]">
+                    <h2 className="mb-[15px] text-[#E6E8EB]">
                         Latest Solved
                     </h2>
 
@@ -189,7 +189,7 @@ function Home() {
                                 {problem.contestId}{problem.index}- {problem.name}
                             </a>
 
-                            <span className= "text-[#9ca3af] ml-2.5 text-[13px]">
+                            <span className= "text-[#8B919B] ml-2.5 text-[13px]">
                                 {new Date(problem.solvedAt).toLocaleDateString()}
                             </span>
                         </div>
@@ -197,7 +197,7 @@ function Home() {
 
                 </div>
                 <div className="mt-[25px] mb-5">
-                    <h2 className="mb-2.5 text-[#E5F0FF]">
+                    <h2 className="mb-2.5 text-[#E6E8EB]">
                         Rating
                     </h2>
                     <div className="flex flex-wrap">
@@ -217,7 +217,7 @@ function Home() {
                     </div>
                 </div>
                 <div className="mb-[30px]">
-                    <h2 className="mb-2.5 text-[#E5F0FF]">
+                    <h2 className="mb-2.5 text-[#E6E8EB]">
                         Tags
                     </h2>
                     <div className="flex flex-wrap">
@@ -237,15 +237,15 @@ function Home() {
                     </div>
                 </div>
                 <div className="flex justify-between items-center mt-[30px] mb-2.5">
-                    <h2 className="m-0 text-[#E5F0FF]">
+                    <h2 className="m-0 text-[#E6E8EB]">
                         Problems
                     </h2>
-                    <p className= "text-[#8FA8C2] m-0">
+                    <p className= "text-[#8B919B] m-0">
                         Showing {filteredProblems.length} of {problems.length}
                     </p>
                 </div>
                 {filteredProblems.length === 0 && (
-                    <p className="text-[#e3e6ea] mt-[30px]">
+                    <p className="text-[#8B919B] mt-[30px]">
                         No problems found.
                     </p>
                 )}
@@ -277,16 +277,16 @@ function Home() {
                         </h3>
 
                         <p className="text-[#9ca3af] my-[5px]">
-                            Rating: <span className="text-[#1E5BB5] font-semibold">{problem.rating}</span>
+                            Rating: <span className="text-[#C94B4B] font-semibold">{problem.rating}</span>
                         </p>
                         <p className="text-[#9ca3af] my-[5px]">
-                            Solved: <span className="text-[#7DDFF2]">{new Date(problem.solvedAt).toLocaleDateString()}</span>
+                            Solved: <span className="text-[#8B919B]">{new Date(problem.solvedAt).toLocaleDateString()}</span>
                         </p>
                         <div className="flex flex-wrap gap-1.5 mt-2.5">
                             {problem.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="px-[9px] py-1 rounded-xl bg-[#253D2A] text-[#B7D7BD] text-[13px] border border-[#3A6340] transition-all duration-200 hover:bg-[#3A6340] hover:border-[#76C442] hover:text-white hover:shadow-[0_0_12px_#3A634080]"
+                                    className="px-[9px] py-1 rounded-xl bg-[#171A20] text-[#B8BDC7] text-[13px] border border-[#242830] transition-all duration-200 hover:bg-[#242830] hover:border-[#C94B4B] hover:text-white hover:shadow-[0_0_12px_#C94B4B30]"
                                 >
                                     {tag}
                                 </span>
