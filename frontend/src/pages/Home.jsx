@@ -88,39 +88,39 @@ function Home() {
         .slice(0, 5)
 
     return (
-        <div className= "min-h-screen bg-[#0f1117] text-white p-10">
+        <div className= "min-h-screen bg-[#080A0F] text-[#E6E8EB] p-5 md:p-10">
             <div className= "w-full max-w-[1400px] mx-auto">
                 <div className= "flex justify-between items-center mb-[30px]">
                     <div>
-                        <h1 className= "text-[40px] m-0">
+                        <h1 className= "text-[40px] m-0 text-[#E6E8EB]">
                             Codeforces Tracker
                         </h1>
 
-                        <p className= "text-[#9ca3af] mt-2">
+                        <p className= "text-[#8B919B] mt-2">
                             Tracking my Codeforces journey!
                         </p>
                     </div>
-                    <div className= "px-4 py-2 rounded-[20px] bg-[#1f2937] border border-[#374151] text-[#60a5fa]">
+                    <div className="px-4 py-2 rounded-[20px] bg-[#11141A] border border-[#242830] text-[#C94B4B] shadow-[0_0_10px_#C94B4B20]">
                         @hr145cp
                     </div>
                     <button
                         onClick={syncProblems}
                         disabled= {syncing}
-                        className={`px-4 py-2 rounded-lg border-none bg-[#2563eb] text-white font-bold ${
+                        className={`px-4 py-2 rounded-lg border-none text-white font-bold transition-all duration-200 ${
                             syncing
-                                ? "cursor-not-allowed opacity-70"
-                                : "cursor-pointer opacity-100"
+                                ? "bg-[#242830] cursor-not-allowed opacity-70"
+                                : "bg-[#C94B4B] cursor-pointer opacity-100 hover:bg-[#D45555] hover:shadow-[0_0_20px_#C94B4B35] active:bg-[#E05A5A] active:text-white"
                         }`}
                     >
                         {syncing ? "Syncing..." : "Sync Codeforces"}
                     </button>
                     {syncMessage && (
-                        <p className= "text-[#60a5fa] my-2 text-sm">
+                        <p className="text-[#C94B4B] my-2 text-sm font-medium">
                             {syncMessage}
                         </p>
                     )}
                     {lastSynced && (
-                        <p className= "text-[#9ca3af] mt-[5px] text-xs">
+                        <p className= "text-[#8FA8C2] mt-[5px] text-xs">
                             Last synced: {lastSynced.toLocaleTimeString([], {
                                 hour:"2-digit",
                                 minute:"2-digit"
@@ -130,28 +130,28 @@ function Home() {
                 </div>
                 
                 <div className= "flex flex-wrap gap-[15px] mb-[25px]">
-                    <div className= "bg-[#1f2937] px-5 py-[15px] rounded-[10px] border border-[#374151]">
+                    <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-200 hover:border-[#C94B4B] hover:shadow-[0_0_18px_#3865F640]">
                         <p className= "text-[#9ca3af] m-0">
                             Total Solved
                         </p>
 
-                        <h2 className="mt-[5px] mb-0">
+                        <h2 className="mt-[5px] mb-0 text-[#C94B4B]">
                             {problems.length}
                         </h2>
                     </div>
-                    <div className="bg-[#1f2937] px-5 py-[15px] rounded-[10px] border border-[#374151]">
+                    <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830]">
                         <p className="text-[#9ca3af] m-0">
                             Ratings
                         </p>
-                        <h2 className="mt-[5px] mb-0">
+                        <h2 className="mt-[5px] mb-0 text-[#C94B4B]">
                             {ratings.length-1}
                         </h2>
                     </div>
-                    <div className= "bg-[#1f2937] px-5 py-[15px] rounded-[10px] border border-[#374151]">
+                    <div className= "bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830]">
                         <p className="text-[#9ca3af] m-0">
                             Tags
                         </p>
-                        <h2 className="mt-[5px] mb-0">
+                        <h2 className="mt-[5px] mb-0 text-[#76C442]">
                             {tags.length-1}
                         </h2>
                     </div>
@@ -162,10 +162,10 @@ function Home() {
                     placeholder= "Search problem..."
                     value= {search}
                     onChange= {(e) => setSearch(e.target.value)}
-                    className="w-full max-w-[700px] box-border p-3 mt-5 mb-[25px] rounded-lg border border-[#374151] bg-[#1f2937] text-white text-base"
+                    className="w-full max-w-[700px] box-border p-3 mt-5 mb-[25px] rounded-lg border border-[#242830] bg-[#11141A] text-white text-base outline-none transition-all duration-200 focus:border-[#C94B4B] focus:shadow-[0_0_15px_#3865F680]"
                 />
                 <div className="mt-[25px] mb-[30px]">
-                    <h2 className="mb-[15px]">
+                    <h2 className="mb-[15px] text-[#E5F0FF]">
                         Latest Solved
                     </h2>
 
@@ -174,17 +174,17 @@ function Home() {
                             key= {problem._id}
                             onMouseEnter= {() => setHoveredProblem(problem._id)}
                             onMouseLeave= {() => setHoveredProblem(null)}
-                            className={`bg-[#1f2937] p-[10px_15px] mt-2 rounded-lg border ${
+                            className={`bg-[#11141A] p-[10px_15px] mt-2 rounded-lg border transition-all duration-200 ${
                                 hoveredProblem === problem._id
-                                    ? "border-[#60a5fa] -translate-y-[3px]"
-                                    : "border-[#374151] translate-y-0"
-                            } transition-transform duration-200`}
+                                    ? "border-[#C94B4B] -translate-y-[3px] shadow-[0_0_18px_#C94B4B35]"
+                                    : "border-[#242830] translate-y-0"
+                            }`}
                         >
                             <a
                                 href={problem.problemUrl}
                                 target= "_blank"
                                 rel= "noreferrer"
-                                className= "text-[#60a5fa] no-underline"
+                                className="text-[#C94B4B] no-underline transition-colors duration-200 hover:text-[#E05A5A]"
                             >
                                 {problem.contestId}{problem.index}- {problem.name}
                             </a>
@@ -197,7 +197,7 @@ function Home() {
 
                 </div>
                 <div className="mt-[25px] mb-5">
-                    <h2 className="mb-2.5">
+                    <h2 className="mb-2.5 text-[#E5F0FF]">
                         Rating
                     </h2>
                     <div className="flex flex-wrap">
@@ -205,10 +205,10 @@ function Home() {
                             <button
                                 key= {rating}
                                 onClick= {() => setSelectedRating(rating)}
-                                className= {`px-3.5 py-2 m-[5px] rounded-[20px] border border-[#374151] cursor-pointer text-white transition-all duration-200 hover:border-[#60a5fa] hover:-translate-y-[2px] ${
+                                className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-200 hover:-translate-y-[2px] ${
                                     selectedRating === rating
-                                        ? "bg-[#2563eb] font-bold"
-                                        : "bg-[#1f2937] font-normal hover:bg-[#263a5a]"
+                                        ? "bg-[#C94B4B] text-white font-bold border-[#C94B4B] shadow-[0_0_20px_#C94B4B60]"
+                                        : "bg-[#171A20] font-normal border-[#242830] hover:bg-[#D4FFFF] hover:border-[#C94B4B] hover:shadow-[0_0_20px_#3865F680] active:bg-[#00D4FF]"
                                 }`}
                             >
                                 {rating}
@@ -217,7 +217,7 @@ function Home() {
                     </div>
                 </div>
                 <div className="mb-[30px]">
-                    <h2 className="mb-2.5">
+                    <h2 className="mb-2.5 text-[#E5F0FF]">
                         Tags
                     </h2>
                     <div className="flex flex-wrap">
@@ -225,10 +225,10 @@ function Home() {
                             <button
                                 key= {tag}
                                 onClick= {() => setSelectedTag(tag)}
-                                className= {`px-3.5 py-2 m-[5px] rounded-[20px] border border-[#374151] cursor-pointer text-white transition-all duration-200 hover:border-[#60a5fa] hover:-translate-y-[2px] ${
+                                className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-200 hover:-translate-y-[2px] ${
                                     selectedTag === tag
-                                        ? "bg-[#2563eb] font-bold"
-                                        : "bg-[#1f2937] font-normal hover:bg-[#263a5a]"
+                                        ? "bg-[#C94B4B] text-white font-bold border-[#C94B4B] shadow-[0_0_20px_#C94B4B60]"
+                                        : "bg-[#171A20] font-normal border-[#242830] hover:bg-[#D4FFFF] hover:border-[#C94B4B] hover:shadow-[0_0_20px_#3865F680] active:bg-[#00D4FF]"
                                 }`}
                             >
                                 {tag}
@@ -237,15 +237,15 @@ function Home() {
                     </div>
                 </div>
                 <div className="flex justify-between items-center mt-[30px] mb-2.5">
-                    <h2 className="m-0">
+                    <h2 className="m-0 text-[#E5F0FF]">
                         Problems
                     </h2>
-                    <p className= "text-[#9ca3af] m-0">
+                    <p className= "text-[#8FA8C2] m-0">
                         Showing {filteredProblems.length} of {problems.length}
                     </p>
                 </div>
                 {filteredProblems.length === 0 && (
-                    <p className="text-[#9ca3af] mt-[30px]">
+                    <p className="text-[#e3e6ea] mt-[30px]">
                         No problems found.
                     </p>
                 )}
@@ -254,21 +254,21 @@ function Home() {
                         key= {problem._id}
                         onMouseEnter={() => setHoveredProblem(problem._id)}
                         onMouseLeave={() => setHoveredProblem(null)}
-                        className={`bg-[#1f2937] p-[15px_18px] mt-2.5 rounded-[10px] border ${
+                        className={`bg-[#11141A] p-[15px_18px] mt-2.5 rounded-[10px] border transition-all duration-200 ${
                             hoveredProblem === problem._id
-                                ? "border-[#60a5fa] -translate-y-[3px]"
-                                : "border-[#374151] translate-y-0"
-                        } transition-transform duration-200`}
+                                ? "border-[#C94B4B] -translate-y-[3px] shadow-[0_0_20px_#C94B4B35]"
+                                : "border-[#242830] translate-y-0"
+                        }`}
                     >
                         <h3 className="m-0 mb-2.5 text-[18px]">
                             <a 
                                 href={problem.problemUrl}
                                 target= "_blank"
                                 rel="noreferrer"
-                                className={`no-underline ${
+                                className={`no-underline transition-colors duration-200 ${
                                     hoveredProblem === problem._id
-                                        ? "text-[#93c5fd]"
-                                        : "text-[#60a5fa]"
+                                        ? "text-[#E05A5A]"
+                                        : "text-[#C94B4B]"
                                 }`}
                             >
                                 {problem.contestId}{problem.index} - {problem.name}
@@ -277,30 +277,16 @@ function Home() {
                         </h3>
 
                         <p className="text-[#9ca3af] my-[5px]">
-                            Rating: {problem.rating}
+                            Rating: <span className="text-[#1E5BB5] font-semibold">{problem.rating}</span>
                         </p>
                         <p className="text-[#9ca3af] my-[5px]">
-                            Solved: {new Date(problem.solvedAt).toLocaleDateString()}
+                            Solved: <span className="text-[#7DDFF2]">{new Date(problem.solvedAt).toLocaleDateString()}</span>
                         </p>
-                        <div
-                            style={{
-                                display:"flex",
-                                flexWrap:"wrap",
-                                gap:"6px",
-                                marginTop:"10px"
-                            }}
-                        >
+                        <div className="flex flex-wrap gap-1.5 mt-2.5">
                             {problem.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    style={{
-                                        padding:"4px 9px",
-                                        borderRadius:"12px",
-                                        backgroundColor:"#111827",
-                                        color:"#9ca3af",
-                                        fontSize:"13px",
-                                        border:"1px solid #374151"
-                                    }}
+                                    className="px-[9px] py-1 rounded-xl bg-[#253D2A] text-[#B7D7BD] text-[13px] border border-[#3A6340] transition-all duration-200 hover:bg-[#3A6340] hover:border-[#76C442] hover:text-white hover:shadow-[0_0_12px_#3A634080]"
                                 >
                                     {tag}
                                 </span>
