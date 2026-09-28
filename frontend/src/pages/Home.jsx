@@ -120,7 +120,7 @@ function Home() {
                         </p>
                     )}
                     {lastSynced && (
-                        <p className= "text-[#8FA8C2] mt-[5px] text-xs">
+                        <p className= "text-[#8B919B] mt-[5px] text-xs">
                             Last synced: {lastSynced.toLocaleTimeString([], {
                                 hour:"2-digit",
                                 minute:"2-digit"
@@ -131,7 +131,7 @@ function Home() {
                 
                 <div className= "flex flex-wrap gap-[15px] mb-[25px]">
                     <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-200 hover:border-[#C94B4B] hover:shadow-[0_0_18px_#3865F640]">
-                        <p className= "text-[#9ca3af] m-0">
+                        <p className= "text-[#8B919B] m-0">
                             Total Solved
                         </p>
 
@@ -140,7 +140,7 @@ function Home() {
                         </h2>
                     </div>
                     <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830]">
-                        <p className="text-[#9ca3af] m-0">
+                        <p className="text-[#8B919B] m-0">
                             Ratings
                         </p>
                         <h2 className="mt-[5px] mb-0 text-[#C94B4B]">
@@ -148,7 +148,7 @@ function Home() {
                         </h2>
                     </div>
                     <div className= "bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830]">
-                        <p className="text-[#9ca3af] m-0">
+                        <p className="text-[#8B919B] m-0">
                             Tags
                         </p>
                         <h2 className="mt-[5px] mb-0 text-[#C94B4B]">
@@ -184,7 +184,7 @@ function Home() {
                                 href={problem.problemUrl}
                                 target= "_blank"
                                 rel= "noreferrer"
-                                className="text-[#C94B4B] no-underline transition-colors duration-200 hover:text-[#E05A5A]"
+                                className="text-[#E6E8EB] no-underline transition-colors duration-200 hover:text-[#E05A5A] hover:drop-shadow-[0_0_6px_#C94B4B50]"
                             >
                                 {problem.contestId}{problem.index}- {problem.name}
                             </a>
@@ -205,7 +205,7 @@ function Home() {
                             <button
                                 key= {rating}
                                 onClick= {() => setSelectedRating(rating)}
-                                className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-200 hover:-translate-y-[2px] ${
+                                className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-200 hover:-translate-y-[2px]  active:scale-95 ${
                                     selectedRating === rating
                                         ? "bg-[#C94B4B] text-white font-bold border-[#C94B4B] shadow-[0_0_20px_#C94B4B60]"
                                         : "bg-[#171A20] font-normal border-[#242830] hover:bg-[#D4FFFF] hover:border-[#C94B4B] hover:shadow-[0_0_20px_#3865F680] active:bg-[#00D4FF]"
@@ -225,7 +225,7 @@ function Home() {
                             <button
                                 key= {tag}
                                 onClick= {() => setSelectedTag(tag)}
-                                className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-200 hover:-translate-y-[2px] ${
+                                className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-200 hover:-translate-y-[2px] active:scale-95 ${
                                     selectedTag === tag
                                         ? "bg-[#C94B4B] text-white font-bold border-[#C94B4B] shadow-[0_0_20px_#C94B4B60]"
                                         : "bg-[#171A20] font-normal border-[#242830] hover:bg-[#D4FFFF] hover:border-[#C94B4B] hover:shadow-[0_0_20px_#3865F680] active:bg-[#00D4FF]"
@@ -265,9 +265,9 @@ function Home() {
                                 href={problem.problemUrl}
                                 target= "_blank"
                                 rel="noreferrer"
-                                className={`no-underline transition-colors duration-200 ${
+                                className={`no-underline transition-all duration-200 ${
                                     hoveredProblem === problem._id
-                                        ? "text-[#E05A5A]"
+                                        ? "text-[#E05A5A] drop-shadow-[0_0_6px_#C94B4B50]"
                                         : "text-[#C94B4B]"
                                 }`}
                             >
@@ -276,17 +276,17 @@ function Home() {
                             
                         </h3>
 
-                        <p className="text-[#9ca3af] my-[5px]">
+                        <p className="text-[#8B919B] my-[5px]">
                             Rating: <span className="text-[#C94B4B] font-semibold">{problem.rating}</span>
                         </p>
-                        <p className="text-[#9ca3af] my-[5px]">
+                        <p className="text-[#8B919B] my-[5px]">
                             Solved: <span className="text-[#8B919B]">{new Date(problem.solvedAt).toLocaleDateString()}</span>
                         </p>
                         <div className="flex flex-wrap gap-1.5 mt-2.5">
                             {problem.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="px-[9px] py-1 rounded-xl bg-[#171A20] text-[#B8BDC7] text-[13px] border border-[#242830] transition-all duration-200 hover:bg-[#242830] hover:border-[#C94B4B] hover:text-white hover:shadow-[0_0_12px_#C94B4B30]"
+                                    className="px-[9px] py-1 rounded-xl bg-[#171A20] text-[#B8BDC7] text-[13px] border border-[#242830] transition-all duration-200 hover:-translate-y-[1px] hover:bg-[#242830] hover:border-[#C94B4B] hover:text-white hover:shadow-[0_0_12px_#C94B4B30]"
                                 >
                                     {tag}
                                 </span>
