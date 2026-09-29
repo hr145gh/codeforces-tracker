@@ -174,7 +174,7 @@ function Home() {
                             key= {problem._id}
                             onMouseEnter= {() => setHoveredProblem(problem._id)}
                             onMouseLeave= {() => setHoveredProblem(null)}
-                            className={`bg-[#11141A] p-[10px_15px] mt-2 rounded-lg border transition-all duration-200 ${
+                            className={`bg-[#11141A] p-[10px_15px] mt-2 rounded-lg border transition-all duration-300 ${
                                 hoveredProblem === problem._id
                                     ? "border-[#C94B4B] -translate-y-[3px] shadow-[0_0_18px_#C94B4B35]"
                                     : "border-[#242830] translate-y-0"
@@ -205,7 +205,7 @@ function Home() {
                             <button
                                 key= {rating}
                                 onClick= {() => setSelectedRating(rating)}
-                                className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-200 hover:-translate-y-[2px]  active:scale-95 ${
+                                className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-300 hover:-translate-y-[2px]  active:scale-95 ${
                                     selectedRating === rating
                                         ? "bg-[#C94B4B] text-white font-bold border-[#C94B4B] shadow-[0_0_20px_#C94B4B60]"
                                         : "bg-[#171A20] font-normal border-[#242830] hover:bg-[#D4FFFF] hover:border-[#C94B4B] hover:shadow-[0_0_20px_#3865F680] active:bg-[#00D4FF]"
@@ -225,7 +225,7 @@ function Home() {
                             <button
                                 key= {tag}
                                 onClick= {() => setSelectedTag(tag)}
-                                className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-200 hover:-translate-y-[2px] active:scale-95 ${
+                                className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-300 hover:-translate-y-[2px] active:scale-95 ${
                                     selectedTag === tag
                                         ? "bg-[#C94B4B] text-white font-bold border-[#C94B4B] shadow-[0_0_20px_#C94B4B60]"
                                         : "bg-[#171A20] font-normal border-[#242830] hover:bg-[#D4FFFF] hover:border-[#C94B4B] hover:shadow-[0_0_20px_#3865F680] active:bg-[#00D4FF]"
@@ -254,9 +254,9 @@ function Home() {
                         key= {problem._id}
                         onMouseEnter={() => setHoveredProblem(problem._id)}
                         onMouseLeave={() => setHoveredProblem(null)}
-                        className={`bg-[#11141A] p-[15px_18px] mt-2.5 rounded-[10px] border transition-all duration-200 ${
+                        className={`bg-[#11141A] p-[15px_18px] mt-2.5 rounded-[10px] border transition-all duration-300 ${
                             hoveredProblem === problem._id
-                                ? "border-[#C94B4B] -translate-y-[3px] shadow-[0_0_20px_#C94B4B35]"
+                                ? "border-[#C94B4B] -translate-y-[4px] shadow-[0_0_20px_#C94B4B35]"
                                 : "border-[#242830] translate-y-0"
                         }`}
                     >
@@ -286,7 +286,7 @@ function Home() {
                             {problem.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="px-[9px] py-1 rounded-xl bg-[#171A20] text-[#B8BDC7] text-[13px] border border-[#242830] transition-all duration-200 hover:-translate-y-[1px] hover:bg-[#242830] hover:border-[#C94B4B] hover:text-white hover:shadow-[0_0_12px_#C94B4B30]"
+                                    className="px-[9px] py-1 rounded-xl bg-[#171A20] text-[#B8BDC7] text-[13px] border border-[#242830] transition-all duration-300 hover:-translate-y-[1px] hover:bg-[#242830] hover:border-[#C94B4B] hover:text-white hover:shadow-[0_0_12px_#C94B4B30]"
                                 >
                                     {tag}
                                 </span>
