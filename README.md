@@ -209,11 +209,10 @@ When the user clicks **Sync Codeforces**:
 If you want to run this project locally, first clone the repository.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/codeforces-tracker.git
+git clone https://github.com/hr145gh/codeforces-tracker.git
 cd codeforces-tracker
 ```
 
-> Replace `YOUR_USERNAME` with the GitHub account that owns the repository.
 
 ---
 
