@@ -100,16 +100,16 @@ function Home() {
                             Tracking my Codeforces journey!
                         </p>
                     </div>
-                    <div className="px-4 py-2 rounded-[20px] bg-[#11141A] border border-[#242830] text-[#C94B4B] shadow-[0_0_10px_#C94B4B20]">
+                    <div className="px-4 py-2 rounded-[20px] bg-[#11141A] border border-[#242830] text-[#C94B4B] shadow-[0_0_10px_#C94B4B20] transition-all duration-300 hover:border-[#C94B4B] hover:shadow-[0_0_12px_#C94B4B30]">
                         @hr145cp
                     </div>
                     <button
                         onClick={syncProblems}
                         disabled= {syncing}
-                        className={`px-4 py-2 rounded-lg border-none text-white font-bold transition-all duration-200 ${
+                        className={`px-4 py-2 rounded-lg border-none text-white font-bold transition-all duration-300 ${
                             syncing
                                 ? "bg-[#242830] cursor-not-allowed opacity-70"
-                                : "bg-[#C94B4B] cursor-pointer opacity-100 hover:bg-[#D45555] hover:shadow-[0_0_20px_#C94B4B35] active:bg-[#E05A5A] active:text-white"
+                                : "bg-[#C94B4B] cursor-pointer opacity-100 hover:-translate-y-[2px] hover:bg-[#D45555] hover:shadow-[0_0_20px_#C94B4B35] active:translate-y-0 active:scale-95 active:bg-[#E05A5A] active:text-white"
                         }`}
                     >
                         {syncing ? "Syncing..." : "Sync Codeforces"}
@@ -130,7 +130,7 @@ function Home() {
                 </div>
                 
                 <div className= "flex flex-wrap gap-[15px] mb-[25px]">
-                    <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-200 hover:border-[#C94B4B] hover:shadow-[0_0_18px_#3865F640]">
+                    <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#C94B4B] hover:shadow-[0_0_18px_#C94B4B25]">
                         <p className= "text-[#8B919B] m-0">
                             Total Solved
                         </p>
@@ -139,7 +139,7 @@ function Home() {
                             {problems.length}
                         </h2>
                     </div>
-                    <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830]">
+                    <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#C94B4B] hover:shadow-[0_0_18px_#C94B4B25]">
                         <p className="text-[#8B919B] m-0">
                             Ratings
                         </p>
@@ -147,7 +147,7 @@ function Home() {
                             {ratings.length-1}
                         </h2>
                     </div>
-                    <div className= "bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830]">
+                    <div className= "bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#C94B4B] hover:shadow-[0_0_18px_#C94B4B25]">
                         <p className="text-[#8B919B] m-0">
                             Tags
                         </p>
@@ -162,7 +162,7 @@ function Home() {
                     placeholder= "Search problem..."
                     value= {search}
                     onChange= {(e) => setSearch(e.target.value)}
-                    className="w-full max-w-[700px] box-border p-3 mt-5 mb-[25px] rounded-lg border border-[#242830] bg-[#11141A] text-white text-base outline-none transition-all duration-200 focus:border-[#C94B4B] focus:shadow-[0_0_15px_#3865F680]"
+                    className="w-full max-w-[700px] box-border p-3 mt-5 mb-[25px] rounded-lg border border-[#242830] bg-[#11141A] text-white text-base outline-none transition-all duration-300 ease-out hover:border-[#383C45] focus:border-[#C94B4B] focus:shadow-[0_0_15px_#3865F680]"
                 />
                 <div className="mt-[25px] mb-[30px]">
                     <h2 className="mb-[15px] text-[#E6E8EB]">
@@ -174,7 +174,7 @@ function Home() {
                             key= {problem._id}
                             onMouseEnter= {() => setHoveredProblem(problem._id)}
                             onMouseLeave= {() => setHoveredProblem(null)}
-                            className={`bg-[#11141A] p-[10px_15px] mt-2 rounded-lg border transition-all duration-300 ${
+                            className={`bg-[#11141A] p-[10px_15px] mt-2 rounded-lg border transition-all duration-300 ease-out ${
                                 hoveredProblem === problem._id
                                     ? "border-[#C94B4B] -translate-y-[3px] shadow-[0_0_18px_#C94B4B35]"
                                     : "border-[#242830] translate-y-0"
@@ -254,7 +254,7 @@ function Home() {
                         key= {problem._id}
                         onMouseEnter={() => setHoveredProblem(problem._id)}
                         onMouseLeave={() => setHoveredProblem(null)}
-                        className={`bg-[#11141A] p-[15px_18px] mt-2.5 rounded-[10px] border transition-all duration-300 ${
+                        className={`bg-[#11141A] p-[15px_18px] mt-2.5 rounded-[10px] border transition-all duration-300 ease-out ${
                             hoveredProblem === problem._id
                                 ? "border-[#C94B4B] -translate-y-[4px] shadow-[0_0_20px_#C94B4B35]"
                                 : "border-[#242830] translate-y-0"
