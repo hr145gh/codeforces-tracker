@@ -8,6 +8,22 @@ Instead of manually remembering which problems have been solved, the application
 
 ---
 
+## 🌐 Live Demo
+
+**Live Website:** https://codeforces-tracker-two.vercel.app/
+
+The application is deployed using:
+
+- **Frontend:** Vercel
+- **Backend:** Render
+- **Database:** MongoDB Atlas
+- **Problem Data:** Codeforces API
+
+
+The frontend communicates with the deployed backend through a production API URL.
+
+---
+
 ## 🚀 Features
 
 ### Codeforces Synchronization
@@ -128,6 +144,13 @@ The interface is built using Tailwind CSS and is designed to work across differe
 * MongoDB Compass
 * MongoDB Atlas
 
+### Deployment
+
+- Vercel — Frontend
+- Render — Backend
+- MongoDB Atlas — Database
+
+
 ---
 
 ## 🏗️ Project Structure
@@ -146,20 +169,22 @@ codeforces-tracker/
 │   ├── services/
 │   │   └── codeforcesService.js
 │   │
-│   ├── server.js
+│   ├── .env
 │   ├── package.json
-│   └── .env
+│   └── server.js
 │
 ├── frontend/
 │   ├── src/
+│   │   ├── components/
 │   │   ├── pages/
-│   │   │   └── Home.jsx
 │   │   ├── services/
 │   │   │   └── api.js
-│   │   └── ...
+│   │   ├── App.jsx
+│   │   └── main.jsx
 │   │
+│   ├── .env
 │   ├── package.json
-│   └── ...
+│   └── vite.config.js
 │
 ├── .gitignore
 └── README.md
@@ -169,30 +194,47 @@ codeforces-tracker/
 
 # ⚙️ How It Works
 
-The application follows a simple flow:
+The application follows this architecture:
 
-```text
-Codeforces
-     │
-     │ API
-     ▼
-Node.js + Express Backend
-     │
-     │ Store / Retrieve
-     ▼
-MongoDB Atlas
-     │
-     │ REST API
-     ▼
-React Frontend
-     │
-     ├── Search
-     ├── Rating Filter
-     ├── Tag Filter
-     └── Latest Solved
-```
+                     Codeforces API
+                       │
+                       ▼
+              Node.js + Express
+                    Backend
+                       │
+                       ▼
+                 MongoDB Atlas
+                       ▲
+                       │
+                       │
+              React + Vite
+                 Frontend
+                       │
+                       ▼
+                    Vercel
 
-When the user clicks **Sync Codeforces**:
+
+The production application is split into two deployed services:
+
+                Vercel
+                │
+                │ HTTPS API requests
+                ▼
+                Render
+                │
+                ▼
+                MongoDB Atlas
+                │
+                └── Codeforces API
+
+The production deployment is split into two services:
+
+- **Frontend:** React + Vite deployed on Vercel
+- **Backend:** Node.js + Express deployed on Render
+- **Database:** MongoDB Atlas
+- **External API:** Codeforces API
+
+When the user clicks Sync Codeforces:
 
 1. The frontend sends a request to the backend.
 2. The backend fetches the user's Codeforces submissions.
@@ -280,6 +322,16 @@ http://localhost:5173
 ```
 
 Open that URL in your browser.
+
+### Frontend Environment Variable
+
+Create a `.env` file inside the `frontend` directory:
+
+    VITE_API_URL=http://localhost:5000
+
+This variable defines the backend API URL used by the frontend.
+
+For production deployment, the same variable is configured in the Vercel project environment variables with the deployed Render backend URL.
 
 ---
 
@@ -434,7 +486,6 @@ The current project focuses on the core tracking functionality. Some possible fu
 * Weak-topic identification
 * Contest performance tracking
 * Codeforces contest history
-* Deployment
 * Automatic scheduled synchronization
 * Pagination for very large problem collections
 
