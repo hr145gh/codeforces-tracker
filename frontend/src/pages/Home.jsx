@@ -90,7 +90,7 @@ function Home() {
     return (
         <div className= "min-h-screen bg-[#080A0F] text-[#E6E8EB] p-5 md:p-10">
             <div className= "w-full max-w-[1400px] mx-auto">
-                <div className= "flex justify-between items-center mb-[30px]">
+                <div className= "flex justify-between items-center mb-[35px]">
                     <div>
                         <h1 className= "text-[40px] m-0 text-[#E6E8EB]">
                             Codeforces Tracker
@@ -100,9 +100,14 @@ function Home() {
                             Tracking my Codeforces journey!
                         </p>
                     </div>
-                    <div className="px-4 py-2 rounded-[20px] bg-[#11141A] border border-[#242830] text-[#C94B4B] shadow-[0_0_10px_#C94B4B20] transition-all duration-300 hover:border-[#C94B4B] hover:shadow-[0_0_12px_#C94B4B30]">
+                    <a
+                        href="https://codeforces.com/profile/hr145cp"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-4 py-2 rounded-[20px] bg-[#11141A] border border-[#242830] text-[#C94B4B] shadow-[0_0_10px_#C94B4B20] transition-all duration-300 hover:border-[#C94B4B] hover:shadow-[0_0_12px_#C94B4B30] no-underline hover:-translate-y-[1px]"
+                    >
                         @hr145cp
-                    </div>
+                    </a>
                     <button
                         onClick={syncProblems}
                         disabled= {syncing}
@@ -129,8 +134,8 @@ function Home() {
                     )}
                 </div>
                 
-                <div className= "flex flex-wrap gap-[15px] mb-[25px]">
-                    <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#C94B4B] hover:shadow-[0_0_18px_#C94B4B25]">
+                <div className= "flex flex-wrap gap-[15px] mb-[30px]">
+                    <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#C94B4B] hover:shadow-[0_0_16px_#C94B4B25]">
                         <p className= "text-[#8B919B] m-0">
                             Total Solved
                         </p>
@@ -139,7 +144,7 @@ function Home() {
                             {problems.length}
                         </h2>
                     </div>
-                    <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#C94B4B] hover:shadow-[0_0_18px_#C94B4B25]">
+                    <div className="bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#C94B4B] hover:shadow-[0_0_16px_#C94B4B25]">
                         <p className="text-[#8B919B] m-0">
                             Ratings
                         </p>
@@ -147,7 +152,7 @@ function Home() {
                             {ratings.length-1}
                         </h2>
                     </div>
-                    <div className= "bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#C94B4B] hover:shadow-[0_0_18px_#C94B4B25]">
+                    <div className= "bg-[#11141A] px-5 py-[15px] rounded-[10px] border border-[#242830] transition-all duration-300 hover:-translate-y-[2px] hover:border-[#C94B4B] hover:shadow-[0_0_16px_#C94B4B25]">
                         <p className="text-[#8B919B] m-0">
                             Tags
                         </p>
@@ -162,9 +167,9 @@ function Home() {
                     placeholder= "Search problem..."
                     value= {search}
                     onChange= {(e) => setSearch(e.target.value)}
-                    className="w-full max-w-[700px] box-border p-3 mt-5 mb-[25px] rounded-lg border border-[#242830] bg-[#11141A] text-white text-base outline-none transition-all duration-300 ease-out hover:border-[#383C45] focus:border-[#C94B4B] focus:shadow-[0_0_15px_#3865F680]"
+                    className="w-full max-w-[700px] box-border p-3 mt-5 mb-[30px] rounded-lg border border-[#242830] bg-[#11141A] text-white text-base outline-none transition-all duration-300 ease-out hover:border-[#383C45] focus:border-[#C94B4B] focus:shadow-[0_0_15px_#3865F680]"
                 />
-                <div className="mt-[25px] mb-[30px]">
+                <div className="mt-[25px] mb-[35px]">
                     <h2 className="mb-[15px] text-[#E6E8EB]">
                         Latest Solved
                     </h2>
@@ -176,7 +181,7 @@ function Home() {
                             onMouseLeave= {() => setHoveredProblem(null)}
                             className={`bg-[#11141A] p-[10px_15px] mt-2 rounded-lg border transition-all duration-300 ease-out ${
                                 hoveredProblem === problem._id
-                                    ? "border-[#C94B4B] -translate-y-[3px] shadow-[0_0_18px_#C94B4B35]"
+                                    ? "border-[#C94B4B] -translate-y-[3px] shadow-[0_0_16px_#C94B4B35]"
                                     : "border-[#242830] translate-y-0"
                             }`}
                         >
@@ -196,7 +201,7 @@ function Home() {
                     ))}
 
                 </div>
-                <div className="mt-[25px] mb-5">
+                <div className="mt-[25px] mb-[25-px]">
                     <h2 className="mb-2.5 text-[#E6E8EB]">
                         Rating
                     </h2>
@@ -208,7 +213,7 @@ function Home() {
                                 className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-300 hover:-translate-y-[2px]  active:scale-95 ${
                                     selectedRating === rating
                                         ? "bg-[#C94B4B] text-white font-bold border-[#C94B4B] shadow-[0_0_20px_#C94B4B60]"
-                                        : "bg-[#171A20] font-normal border-[#242830] hover:bg-[#D4FFFF] hover:border-[#C94B4B] hover:shadow-[0_0_20px_#3865F680] active:bg-[#00D4FF]"
+                                        : "bg-[#171A20] font-normal border-[#242830] hover:bg-[#242830] hover:border-[#C94B4B] hover:shadow-[0_0_16px_#C94B4B35] active:bg-[#C94B4B]"
                                 }`}
                             >
                                 {rating}
@@ -216,7 +221,7 @@ function Home() {
                         ))}
                     </div>
                 </div>
-                <div className="mb-[30px]">
+                <div className="mb-[35px]">
                     <h2 className="mb-2.5 text-[#E6E8EB]">
                         Tags
                     </h2>
@@ -228,7 +233,7 @@ function Home() {
                                 className={`px-3.5 py-2 m-[5px] rounded-[20px] border cursor-pointer text-white transition-all duration-300 hover:-translate-y-[2px] active:scale-95 ${
                                     selectedTag === tag
                                         ? "bg-[#C94B4B] text-white font-bold border-[#C94B4B] shadow-[0_0_20px_#C94B4B60]"
-                                        : "bg-[#171A20] font-normal border-[#242830] hover:bg-[#D4FFFF] hover:border-[#C94B4B] hover:shadow-[0_0_20px_#3865F680] active:bg-[#00D4FF]"
+                                        : "bg-[#171A20] font-normal border-[#242830] hover:bg-[#242830] hover:border-[#C94B4B] hover:shadow-[0_0_16px_#C94B4B35] active:bg-[#C94B4B]"
                                 }`}
                             >
                                 {tag}
@@ -236,11 +241,11 @@ function Home() {
                         ))}
                     </div>
                 </div>
-                <div className="flex justify-between items-center mt-[30px] mb-2.5">
+                <div className="flex justify-between items-center mt-[35px] mb-2.5">
                     <h2 className="m-0 text-[#E6E8EB]">
                         Problems
                     </h2>
-                    <p className= "text-[#8B919B] m-0">
+                    <p className= "text-[#8B919B] m-0 text-[13px]">
                         Showing {filteredProblems.length} of {problems.length}
                     </p>
                 </div>
@@ -256,7 +261,7 @@ function Home() {
                         onMouseLeave={() => setHoveredProblem(null)}
                         className={`bg-[#11141A] p-[15px_18px] mt-2.5 rounded-[10px] border transition-all duration-300 ease-out ${
                             hoveredProblem === problem._id
-                                ? "border-[#C94B4B] -translate-y-[4px] shadow-[0_0_20px_#C94B4B35]"
+                                ? "border-[#C94B4B] -translate-y-[4px] shadow-[0_0_18px_#C94B4B35]"
                                 : "border-[#242830] translate-y-0"
                         }`}
                     >
